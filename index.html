@@ -1,1 +1,300 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>babyselris ♡ | Link in Bio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Mitr:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Mitr', sans-serif;
+      background-color: #faf7f8;
+      color: #333;
+      display: flex;
+      justify-content: center;
+      padding: 20px 10px;
+    }
+
+    .bio-container {
+      width: 100%;
+      max-width: 480px;
+      background: #ffffff;
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+      padding-bottom: 30px;
+    }
+
+    /* 1. ปกภาพ GIF ด้านบน */
+    .banner-gif {
+      width: 100%;
+      height: 190px;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* 2. ข้อมูลโปรไฟล์ */
+    .profile-section {
+      text-align: center;
+      padding: 0 20px;
+      margin-top: -60px;
+    }
+
+    .profile-avatar {
+      width: 115px;
+      height: 115px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #ffffff;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      background-color: #fff;
+    }
+
+    .profile-name {
+      font-size: 1.35rem;
+      font-weight: 600;
+      margin-top: 10px;
+      color: #222;
+    }
+
+    .profile-desc {
+      font-size: 0.9rem;
+      color: #666;
+      margin-top: 6px;
+      line-height: 1.5;
+    }
+
+    /* 3. ปุ่มลิงก์ติดต่อ */
+    .links-section {
+      margin-top: 22px;
+      padding: 0 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .link-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 13px;
+      border-radius: 16px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .link-btn:active {
+      transform: scale(0.98);
+    }
+
+    .btn-line { background-color: #06C755; color: #fff; }
+    .btn-ig { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: #fff; }
+    .btn-fb { background-color: #1877F2; color: #fff; }
+    .btn-custom { background-color: #ff85a2; color: #fff; }
+
+    /* 4. ตัวอย่างผลงาน Grid */
+    .works-section {
+      margin-top: 30px;
+      padding: 0 20px;
+    }
+
+    .section-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 14px;
+      color: #333;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .work-item {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      aspect-ratio: 1 / 1;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+      background-color: #f0f0f0;
+      cursor: pointer;
+    }
+
+    .work-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .work-item:active img {
+      transform: scale(0.96);
+    }
+
+    /* 5. หน้าต่างป๊อปอัปขยายดูผลงาน (Modal) */
+    .work-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(4px);
+      z-index: 9999;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .work-modal-content {
+      background: #ffffff;
+      width: 100%;
+      max-width: 420px;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      position: relative;
+      animation: popUp 0.25s ease-out;
+    }
+
+    @keyframes popUp {
+      from { transform: scale(0.9); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .modal-close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 26px;
+      font-weight: bold;
+      color: #fff;
+      text-shadow: 0 2px 5px rgba(0,0,0,0.6);
+      cursor: pointer;
+      z-index: 10;
+    }
+
+    .modal-img {
+      width: 100%;
+      max-height: 380px;
+      object-fit: contain;
+      background-color: #1a1a1a;
+      display: block;
+    }
+
+    .modal-info {
+      padding: 16px 20px;
+    }
+
+    .modal-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #222;
+      margin-bottom: 6px;
+    }
+
+    .modal-desc {
+      font-size: 0.88rem;
+      color: #555;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bio-container">
+    
+    <!-- 🌸 ปกรูป GIF ด้านบน (เปลี่ยนลิงก์ตรง src ได้) -->
+    <img src="https://i.ibb.co/XfZkzsbZ/5-A488-F02-0-D5-C-4-CBB-9579-9-DD355133-B91.gif" alt="Cover GIF" class="banner-gif">
+
+    <!-- 🌸 ข้อมูลโปรไฟล์ -->
+    <div class="profile-section">
+      <img src="https://i.postimg.cc/g0dJXbm1/IMG-0109.jpg" alt="Profile" class="profile-avatar">
+      <div class="profile-name">babyselris ♡</div>
+      <div class="profile-desc">
+        welcome to babyselris 🌷<br>
+        ขายแอพพรีเมี่ยม ทำป้าย สนใจติดต่อสอบถามได้เลยนะคะ ✨
+      </div>
+    </div>
+
+    <!-- 🌸 ปุ่มลิงก์ติดต่อ (ใส่ลิงก์ LINE จริงไว้ให้แล้ว ส่วนปุ่มอื่นเว้น # ไว้ให้เรียบร้อย) -->
+    <div class="links-section">
+      <a href="https://line.me/ti/p/BxmZSASbBs" target="_blank" class="link-btn btn-line">💬 LINE Official</a>
+      <a href="#" class="link-btn btn-ig">📷 Instagram</a>
+      <a href="#" class="link-btn btn-fb">📘 Facebook Page</a>
+      <a href="#" class="link-btn btn-custom">💖 สอบถามราคาสินค้า</a>
+    </div>
+
+    <!-- 🌸 ตัวอย่างผลงาน Grid (แตะเพื่อขยายดู) -->
+    <div class="works-section">
+      <div class="section-title">✨ ตัวอย่างผลงาน (แตะเพื่อดูรายละเอียด)</div>
+      <div class="gallery-grid">
+        
+        <!-- ชิ้นที่ 1 -->
+        <div class="work-item" onclick="openWorkModal('https://i.postimg.cc/f3KYQPrQ/IMG-0099.jpg', 'ป้ายบัญชีลายมินิมอล', 'ป้ายช่องทางการชำระเงิน โทนสีพาสเทลน่ารัก ออกแบบให้เข้ากับธีมร้านค้าค่ะ')">
+          <img src="https://i.postimg.cc/9RYHCN8B/IMG-2065.jpg" alt="งานชิ้นที่ 1">
+        </div>
+
+        <!-- ชิ้นที่ 2 -->
+        <div class="work-item" onclick="openWorkModal('https://i.postimg.cc/vgZfYvJH/IMG-0098.jpg', 'ป้ายเมนูเรทราคา', 'ป้ายแจ้งรายละเอียดราคาแบบอ่านง่าย จัดวางข้อความชัดเจน ไม่ตกหล่น')">
+          <img src="https://i.postimg.cc/5YSWbk7q/IMG-2066.jpg" alt="งานชิ้นที่ 2">
+        </div>
+
+        <!-- ชิ้นที่ 3 -->
+        <div class="work-item" onclick="openWorkModal('https://i.postimg.cc/7ZLHYtKM/IMG-0095.jpg', 'โลโก้ / มาสคอตประจำร้าน', 'ออกแบบโลโก้และรูปโปรไฟล์ร้าน เพิ่มความน่าเชื่อถือและเอกลักษณ์เฉพาะตัว')">
+          <img src="https://i.postimg.cc/k6vPqh1c/IMG-2095.jpg" alt="งานชิ้นที่ 3">
+        </div>
+
+        <!-- ชิ้นที่ 4 -->
+        <div class="work-item" onclick="openWorkModal('https://i.postimg.cc/f3KYQPrQ/IMG-0099.jpg', 'ป้ายรีวิวสินค้า', 'กรอบและเทมเพลตสำหรับลงรีวิวลูกค้า สวยงาม สะอาดตา')">
+          <img src="https://i.postimg.cc/k6vPqh1c/IMG-2095.jpg" alt="งานชิ้นที่ 4">
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- หน้าต่างแสดงผลงานแบบขยาย (Modal) -->
+  <div id="workModal" class="work-modal" onclick="closeWorkModal(event)">
+    <div class="work-modal-content">
+      <span class="modal-close-btn" onclick="document.getElementById('workModal').style.display='none'">&times;</span>
+      <img id="modalImg" class="modal-img" src="" alt="ขยายผลงาน">
+      <div class="modal-info">
+        <div id="modalTitle" class="modal-title"></div>
+        <div id="modalDesc" class="modal-desc"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ฟังก์ชันเปิดดูรูปขนาดใหญ่พร้อมคำอธิบาย
+    function openWorkModal(imgSrc, title, desc) {
+      document.getElementById('modalImg').src = imgSrc;
+      document.getElementById('modalTitle').innerText = title;
+      document.getElementById('modalDesc').innerText = desc;
+      document.getElementById('workModal').style.display = 'flex';
+    }
+
+    // ฟังก์ชันปิดเมื่อแตะพื้นหลังสีดำ
+    function closeWorkModal(event) {
+      if (event.target.id === 'workModal') {
+        document.getElementById('workModal').style.display = 'none';
+      }
+    }
+  </script>
+
+</body>
+</html>
 
